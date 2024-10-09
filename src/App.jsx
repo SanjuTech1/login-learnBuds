@@ -1,15 +1,14 @@
-// src/App.jsx
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import SignInForm from "./components/SignInForm";
+import LoginPage from "./components/LoginPage"; // Adjust the import path
 import "./index.css";
-import LoginPage from "./components/LoginPage";
-
 const App = () => {
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-200">
-      <SignInForm />
-      <LoginPage />
-    </div>
+    <Routes>
+      <Route path="/" element={<SignInForm />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   );
 };
 

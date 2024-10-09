@@ -1,5 +1,7 @@
+// SignInForm.js
 import React, { useState } from "react";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import GoogleLogo from "../assets/google.svg";
 import AppleLogo from "../assets/apple.svg";
 import Input from "./InputField";
@@ -8,9 +10,17 @@ import Checkbox from "./Checkbox";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSignIn = () => {
+    // Here you can add validation logic if needed
+
+    // Navigate to the LoginPage
+    navigate("/login");
   };
 
   return (
@@ -20,15 +30,15 @@ const SignInForm = () => {
     >
       <h2 className="text-2xl font-bold mb-4 text-darkGray">Service Connect</h2>
       <h3 className="text-lg mb-4 text-darkGray">Getting Started..!</h3>
-
       <div className="relative mb-4">
-        <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />{" "}
+        <div>
+          <FaEnvelope className="flex absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
+        </div>
         <Input
           type="email"
-          className="pl-12 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
+          className="pl-24 py-10 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
         />
       </div>
-
       <div className="relative mb-4">
         <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
 
@@ -44,30 +54,24 @@ const SignInForm = () => {
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </div>
       </div>
-
       <div className="relative mb-4">
         <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
 
         <Input
           type="password"
-          className="pl-12 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary" // Add padding to the left of the input
+          className="pl-12 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
         />
       </div>
-
       <div className="flex items-center mb-4">
         <Checkbox label="Agree to Terms & Conditions" />
       </div>
-
-      <Button>Sign In</Button>
-
+      <Button onClick={handleSignIn}>Sign In</Button>{" "}
+      {/* Updated to use handleSignIn */}
       <p className="mt-4 text-center text-darkGray">Or Continue With</p>
-
       <div className="flex justify-center space-x-4 mt-2">
         <img src={GoogleLogo} alt="Google Logo" width={40} height={40} />
-
         <img src={AppleLogo} alt="Apple Logo" width={40} height={40} />
       </div>
-
       <p className="mt-4 text-center text-darkGray">
         Already have an Account?{" "}
         <a href="#" className="text-primary">
