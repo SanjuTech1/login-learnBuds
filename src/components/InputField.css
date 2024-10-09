@@ -1,0 +1,27 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #726a68;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input-icon {
+  margin-right: 0.5rem;
+  color: #595959;
+}
+
+.input-field {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  placeholder-color: #cccccc;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: #cccccc;
+}
