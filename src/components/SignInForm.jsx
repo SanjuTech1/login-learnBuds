@@ -10,14 +10,29 @@ import Checkbox from "./Checkbox";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState(""); // State for email
+  const [emailError, setEmailError] = useState(""); // State for email error
   const navigate = useNavigate(); // Initialize navigate
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex pattern
+    return emailPattern.test(email);
+  };
+
   const handleSignIn = () => {
-    // Here you can add validation logic if needed
+    setEmailError(""); // Reset email error
+
+    // Validate email
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+      return; // Stop execution if email is invalid
+    }
+
+    // Here you can add additional validation logic if needed
 
     // Navigate to the LoginPage
     navigate("/login");
@@ -36,17 +51,19 @@ const SignInForm = () => {
         </div>
         <Input
           type="email"
+          value={email} // Bind email state to input
+          onChange={(e) => setEmail(e.target.value)} // Update email state on change
           className="pl-24 py-10 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
         />
+        {emailError && <p className="text-red-500 text-sm">{emailError}</p>}{" "}
+        {/* Display error message */}
       </div>
       <div className="relative mb-4">
         <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
-
         <Input
           type={showPassword ? "text" : "password"}
           className="pl-12 pr-10 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
         />
-
         <div
           className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-white"
           onClick={togglePasswordVisibility}
@@ -56,7 +73,6 @@ const SignInForm = () => {
       </div>
       <div className="relative mb-4">
         <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" />
-
         <Input
           type="password"
           className="pl-12 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"

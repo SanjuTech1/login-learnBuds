@@ -1,11 +1,17 @@
 import React from "react";
-import "./InputField.css"; // Import the CSS file
+import "./InputField.css";
 
-const InputField = ({ type, placeholder, icon }) => {
+const InputField = ({ type, placeholder, icon, value, onChange }) => {
   return (
     <div className="input-container">
       {icon && <span className="input-icon">{icon}</span>}
-      <input type={type} placeholder={placeholder} className="input-field" />
+      <input
+        type={type}
+        placeholder={placeholder}
+        className="input-field"
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 };
