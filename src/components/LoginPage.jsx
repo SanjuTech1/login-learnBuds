@@ -1,10 +1,17 @@
 import React from "react";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Input from "./InputField";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 
 const LoginPage = () => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleContinue = () => {
+    // Navigate to the CardPage
+    navigate("/cards");
+  };
+
   return (
     <div
       className="max-w-sm mx-auto p-5 rounded-lg shadow-lg"
@@ -29,13 +36,19 @@ const LoginPage = () => {
           placeholder="Address"
         />
       </div>
+
       <div className="relative mb-4">
         <Input type="text" placeholder="Phone " />
       </div>
+
       <div className="flex items-center mb-4">
-        <Checkbox label="Accept and Conitune" />
+        <Checkbox label="Accept and Continue" />
       </div>
-      <Button type="submit"> Continue </Button>
+
+      <Button type="submit" onClick={handleContinue}>
+        {" "}
+        Continue{" "}
+      </Button>
     </div>
   );
 };
